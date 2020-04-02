@@ -1,0 +1,479 @@
+{
+	"info": {
+		"_postman_id": "954c5b7c-a263-4a7f-9b56-c3c0eebc0d02",
+		"name": "REST API Course",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Section 3",
+			"item": [
+				{
+					"name": "Get All Stores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/store",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"store"
+							]
+						},
+						"description": "Get Store"
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"newstore\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/store",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"store"
+							]
+						},
+						"description": "Get Store"
+					},
+					"response": []
+				},
+				{
+					"name": "My Wonderful Store",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/store/My Wonderful Store",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"store",
+								"My Wonderful Store"
+							]
+						},
+						"description": "Get Store"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Store \"Bob\"",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/store/bob",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"store",
+								"bob"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Item To Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n\t\"name\":\"mynewitem2\",\n\t\"price\":5.66\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/store/newstore/item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"store",
+								"newstore",
+								"item"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Section 4",
+			"item": [
+				{
+					"name": "/test GET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/test/foo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"test",
+								"foo"
+							]
+						},
+						"description": "This just reflects whatever string is passed into test e.g. /test/foo returns 'item:foo'"
+					},
+					"response": []
+				},
+				{
+					"name": "/auth JWT authentication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"bob\",\n\t\"password\":\"asdf\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth"
+							]
+						},
+						"description": "Testing the JWT auth functionality"
+					},
+					"response": []
+				},
+				{
+					"name": "/items GET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7fb926c4-bf7e-47fc-931e-698972bca431",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"items"
+							]
+						},
+						"description": "This should return a list of items, each in JSON format"
+					},
+					"response": []
+				},
+				{
+					"name": "/item/<name> GET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7fb926c4-bf7e-47fc-931e-698972bca431",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/item/tim",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"item",
+								"tim"
+							]
+						},
+						"description": "This should one specific item, each in JSON format, by name. No two items should have the same name"
+					},
+					"response": []
+				},
+				{
+					"name": "/item/<name> GET with JWT auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7fb926c4-bf7e-47fc-931e-698972bca431",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1ODU4NDUxNzksImlhdCI6MTU4NTg0NDg3OSwibmJmIjoxNTg1ODQ0ODc5LCJpZGVudGl0eSI6MX0.p-nj_BiP35cgFPlJ6qwwGFXPUgft4sKvVSKD2IaKp9I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/item/tim",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"item",
+								"tim"
+							]
+						},
+						"description": "This should one specific item, each in JSON format, by name with a JWT auth token."
+					},
+					"response": []
+				},
+				{
+					"name": "/item/<name> POST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7fb926c4-bf7e-47fc-931e-698972bca431",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"price\": 5.66\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/item/socks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"item",
+								"socks"
+							]
+						},
+						"description": "This should create one specific item, each in JSON format, by name. If the item already exists it will fail"
+					},
+					"response": []
+				},
+				{
+					"name": "/item/<name> POST Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7fb926c4-bf7e-47fc-931e-698972bca431",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1ODU4NDUxNzksImlhdCI6MTU4NTg0NDg3OSwibmJmIjoxNTg1ODQ0ODc5LCJpZGVudGl0eSI6MX0.p-nj_BiP35cgFPlJ6qwwGFXPUgft4sKvVSKD2IaKp9I",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"price\": 5.66\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/item/socks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"item",
+								"socks"
+							]
+						},
+						"description": "This should create one specific item, each in JSON format, by name. If the item already exists it will fail"
+					},
+					"response": []
+				},
+				{
+					"name": "/item/<name> DELETE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7fb926c4-bf7e-47fc-931e-698972bca431",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/item/socks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"item",
+								"socks"
+							]
+						},
+						"description": "This should delete one specific item, each in JSON format, by name. No two items should have the same name"
+					},
+					"response": []
+				},
+				{
+					"name": "/item/<name> PUT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7fb926c4-bf7e-47fc-931e-698972bca431",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"price\": 17.11\n\t\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/item/socks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"item",
+								"socks"
+							]
+						},
+						"description": "This should create a new item or update one existing item, each in JSON format, by name. No two items should have the same name"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

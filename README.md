@@ -1,1 +1,1 @@
-Flask-RESTful with SQLite
+Working with Flask RESTful example
