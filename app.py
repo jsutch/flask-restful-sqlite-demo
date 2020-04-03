@@ -82,7 +82,7 @@ class Item(Resource):
 
 
 class ItemList(Resource):
-    #@jwt_required()
+    @jwt_required()
     def get(self):
         return {'items': items}
 
