@@ -1,6 +1,14 @@
-from flask_restful import Resource, Api, reqparse
-from flask_jwt import JWT, jwt_required, current_identity
+import sqlite3
+from flask import Flask, request
+from flask_restful import Resource, reqparse
+from flask_jwt import jwt_required
 
+class Test(Resource):
+    """
+    test harness. return whatever name passed
+    """
+    def get(self, name):
+        return {'test':name}
 
 class Item(Resource):
     """
@@ -16,12 +24,23 @@ class Item(Resource):
     )
     #@jwt_required()
     def get(self, name):
-        item = next(filter(lambda x: x['name'] == name, items), None) #next() returns only the first item from filter(lambda)
-        # return {'item': item}, 200 if item is not None else 404
-        return {'item': item}, 200 if item else 404 #shortened version
+        connection = sqlite3.connect('data.db')
+        cursor = connection.cursor()
+
+        query = '''SELECT * FROM items WHERE name =?'''
+        result = cursor.execute(query, (name, ))
+        row = result.fetchone()
+        connection.close()
+
+        if row:
+            return {'item':{'name': row[0], 'price':row[1]}}
+        return {'message':'Item not found'}, 404
 
     #@jwt_required()
     def post(self, name):
+        connection = sqlite3.connect('data.db')
+        cursor = connection.cursor()
+
         if next(filter(lambda x: x['name'] == name, items), None) is not None:
             return {'message': "An item with name '{}' already exists".format(name)}, 400
 
@@ -39,6 +58,8 @@ class Item(Resource):
         """
         Overwrite items list with a new list that has had 'name' removed
         """
+        connection = sqlite3.connect('data.db')
+        cursor = connection.cursor()
         global items 
         items = list(filter(lambda x: x['name'] != name, items))
         return {'message':'Item Deleted'}
@@ -49,6 +70,9 @@ class Item(Resource):
         Itempotent. Can create or update an item.
         """
         data = Item.parser.parse_args()
+
+        connection = sqlite3.connect('data.db')
+        cursor = connection.cursor()
 
         item = next(filter(lambda x: x['name'] == name, items), None)
         if item is None:

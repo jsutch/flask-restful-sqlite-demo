@@ -1,6 +1,6 @@
-from flask import Flask, request
-from flask_restful import Resource, Api, reqparse
-from flask_jwt import JWT, jwt_required, current_identity
+from flask import Flask
+from flask_restful import Api, reqparse
+from flask_jwt import JWT, current_identity
 # our libraries
 from security import authenticate, identity # implemented in security.py
 from user import UserRegister
@@ -20,12 +20,7 @@ jwt = JWT(app, authenticate, identity)
 # datastore
 # items = []
 
-class Test(Resource):
-    """
-    test harness. return whatever name passed
-    """
-    def get(self, name):
-        return {'test':name}
+
 
 
 # Adding resources:
