@@ -17,9 +17,12 @@ user = (1,'bob','asdf')
 chuck = (2,'chuck','asdf')
 annie = (3,'annie','asdf')
 newusers = [
-    (10,'tom','asdf'),
-    (11,'tim','asdf'),
-    (12,'terry','asdf')
+    (None,'bob','asdf'),
+    (None,'alice','asdf'),
+    (None,'chuck','asdf'),
+    (None,'tom','asdf'),
+    (None,'tim','asdf'),
+    (NULL,'terry','asdf')
 ]
 
 # insert the user into the table
