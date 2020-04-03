@@ -1,1 +1,1 @@
-Working with Flask RESTful example
+Working with Flask RESTful with SQLite
