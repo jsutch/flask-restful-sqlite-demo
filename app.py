@@ -1,7 +1,9 @@
 from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
 from flask_jwt import JWT, jwt_required, current_identity
+# our libraries
 from security import authenticate, identity # implemented in security.py
+from user import UserRegister
 
 # instantiate app
 app = Flask(__name__)
@@ -93,6 +95,7 @@ api.add_resource(Test,'/test/<string:name>')
 # Application API targets
 api.add_resource(Item,'/item/<string:name>') # e.g. http://localhost/item/mittens
 api.add_resource(ItemList, '/items')
+api.add_resource(UserRegister,'/register')
 
 # Debug
 app.run(port=5000, debug=True)
