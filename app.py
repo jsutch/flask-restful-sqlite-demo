@@ -4,7 +4,8 @@ from flask_jwt import JWT, current_identity
 # our libraries
 from security import authenticate, identity # implemented in security.py
 from user import UserRegister
-from item import Item, Itemlist
+from item import Item, ItemList
+from item import Test
 
 # instantiate app
 app = Flask(__name__)
@@ -33,9 +34,11 @@ api.add_resource(ItemList, '/items')
 api.add_resource(UserRegister,'/register')
 
 # Debug
-app.run(port=5000, debug=True)
+if __name__ == '__main__':
+    app.run(port=5000, debug=True)
 # Regular
-#app.run(port=5000)
+#if __name__ == '__main__':
+    #app.run(port=5000)
 
 
 
