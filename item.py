@@ -81,8 +81,12 @@ class Item(Resource):
         """
         connection = sqlite3.connect('data.db')
         cursor = connection.cursor()
-        global items 
-        items = list(filter(lambda x: x['name'] != name, items))
+        query = '''DELETE FROM items WHERE name =?'''
+        cursor.execute(query, (name,))
+
+        connection.commit()
+        connection.close()
+
         return {'message':'Item Deleted'}
 
     #@jwt_required()
