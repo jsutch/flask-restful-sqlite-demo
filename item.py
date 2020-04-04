@@ -122,4 +122,4 @@ class ItemList(Resource):
         
         connection.close()
 
-        return {'items':{ items }}, 200
+        return {'items': items }, 200
